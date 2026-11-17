@@ -35,7 +35,47 @@ roadmap demand — an **87.3% annual load**, with every quarter between 86% and 
 | Team Capacity | Roster with FTE, allocation, ramp factor, PTO, plus a PTO reconciliation check |
 | Sprint Plan | The baseline sprint by sprint: dev-days, commitable points, planned, load %, actuals, rolling velocity |
 | Annual Plan | Roadmap epics: estimate / confidence = risk-adjusted size, spread over a sprint range |
+| Stories | Fine-grained stories per epic, with reconciliation against epic estimates and sprint capacity |
 | Dashboard | Supply vs demand by quarter, investment mix vs target, baseline reconciliation |
+
+## Files, and the order to run them
+
+| File | What it is |
+|---|---|
+| `FY2027-sprint-plan-baseline.xlsx` | The workbook. Generated, but meant to be filled in by hand afterwards. |
+| `build_plan.py` | Rebuilds the workbook from scratch. Cadence, roster, holidays and epics are all in here. |
+| `verify_plan.py` | Audits every formula and independently recomputes the model. Run after any change to `build_plan.py`. |
+| `plan_lib.py` | Shared model recomputation and chart rebuild, used by the generator and by the story skill. |
+| `stories-input.json` | The story breakdown. Source of truth for the `Stories` tab. |
+
+**`build_plan.py` overwrites the workbook, which drops the `Stories` tab.** The order is:
+
+```bash
+python planning/build_plan.py                                                    # rebuild the plan
+python planning/verify_plan.py                                                   # audit it
+python .claude/skills/story-breakdown/stories.py write --input planning/stories-input.json
+python .claude/skills/story-breakdown/stories.py check                           # reconcile
+```
+
+Hand edits made in Excel — PTO tweaks, actual points completed, notes — live only in
+the `.xlsx`, so `build_plan.py` discards them. Either keep such edits out of the
+generator's way by not regenerating, or fold them back into `build_plan.py` first.
+`stories.py write` is safe: it replaces only the `Stories` tab and leaves the rest
+of the workbook, including hand edits, alone.
+
+## Breaking epics into stories
+
+`.claude/skills/story-breakdown` is a Claude Code skill: ask for a story breakdown
+in a session opened on this repo and it reads the epics, splits them into 1/2/3/5/8
+point stories with Given/When/Then acceptance criteria, assigns them to sprints
+inside each epic's range, and reconciles the totals.
+
+The Q1 epics are broken down as a worked example — 35 stories, 160 points, each epic
+reconciling exactly to its estimate. The other 12 epics are left for the skill to do.
+
+Story points reconcile against an epic's **estimate**, not its risk-adjusted size,
+so assigned story points per sprint sit well below the plan's own Load %: the gap is
+the risk adjustment, which is deliberately not broken down.
 
 ## Changing the cadence
 

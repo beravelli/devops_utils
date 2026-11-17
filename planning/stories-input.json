@@ -1,0 +1,319 @@
+{
+  "stories": [
+    {
+      "epic": "INI-01",
+      "story": "As a returning shopper, I want my saved address pre-filled at checkout so that I can pay without retyping it.",
+      "acceptance": "Given a signed-in shopper with a saved address\nWhen they open checkout\nThen the address fields are pre-filled and remain editable\n\nGiven a signed-in shopper with no saved address\nWhen they open checkout\nThen the fields are empty and no error is shown",
+      "points": 3,
+      "sprint": 1,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-01",
+      "story": "As a shopper, I want the whole checkout on one page so that I can see every step before committing.",
+      "acceptance": "Given a shopper with items in the cart\nWhen they open checkout\nThen address, delivery, payment and summary are visible on one page without navigation\n\nGiven a section is incomplete\nWhen the shopper tries to pay\nThen the first incomplete section is focused and names what is missing",
+      "points": 8,
+      "sprint": 1,
+      "status": "Ready",
+      "notes": "Layout shell only; payment lands in S02."
+    },
+    {
+      "epic": "INI-01",
+      "story": "As a first-time shopper, I want to check out without an account so that I am not forced to register.",
+      "acceptance": "Given a shopper who is not signed in\nWhen they open checkout\nThen they can enter an email and continue as a guest\n\nGiven a guest completes an order\nWhen the confirmation is shown\nThen they are offered account creation with the order already attached",
+      "points": 5,
+      "sprint": 1,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-01",
+      "story": "As a shopper, I want to pay by card so that I can complete my order.",
+      "acceptance": "Given a valid test card and a complete address\nWhen the shopper submits payment\nThen the order is created and the confirmation page shows the order number\n\nGiven the provider returns success\nWhen the webhook arrives\nThen the order moves to Paid exactly once, even if the webhook is delivered twice",
+      "points": 8,
+      "sprint": 2,
+      "status": "Ready",
+      "notes": "Provider test mode and published test card numbers only."
+    },
+    {
+      "epic": "INI-01",
+      "story": "As a shopper whose card is declined, I want to be told clearly and keep my basket so that I can try another card.",
+      "acceptance": "Given a card that the provider declines\nWhen the shopper submits payment\nThen a plain-language message names the problem and the basket and address are preserved\n\nGiven the provider times out\nWhen no response arrives within the timeout\nThen the shopper sees a retry option and no duplicate order is created",
+      "points": 5,
+      "sprint": 2,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-01",
+      "story": "As a shopper, I want tax and shipping itemised before I pay so that the total holds no surprises.",
+      "acceptance": "Given a basket with a delivery address\nWhen the summary renders\nThen goods, shipping and tax are listed separately and sum to the displayed total\n\nGiven the address changes to another tax jurisdiction\nWhen the shopper updates it\nThen tax and total recalculate before payment is enabled",
+      "points": 5,
+      "sprint": 2,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-01",
+      "story": "As a shopper, I want to enter a promo code so that an advertised discount is applied.",
+      "acceptance": "Given a valid, in-date promo code\nWhen the shopper applies it\nThen the discount line appears and the total drops accordingly\n\nGiven an expired or unknown code\nWhen the shopper applies it\nThen the code is rejected with a reason and the total is unchanged",
+      "points": 5,
+      "sprint": 3,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-01",
+      "story": "As an overseas shopper, I want prices in my own currency so that I know what I am paying.",
+      "acceptance": "Given a shopper in a supported non-home currency\nWhen checkout renders\nThen all amounts show in that currency with the rate's as-of timestamp\n\nGiven the rate is older than the staleness window\nWhen checkout renders\nThen the home currency is shown instead and the event is logged",
+      "points": 8,
+      "sprint": 3,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-01",
+      "story": "As a shopper, I want my address checked as I type so that delivery does not fail.",
+      "acceptance": "Given a partial address\nWhen the shopper pauses typing\nThen provider suggestions appear and one can be selected to fill the fields\n\nGiven the validation provider is unavailable\nWhen the shopper submits\nThen the typed address is accepted and flagged for manual review",
+      "points": 5,
+      "sprint": 3,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-01",
+      "story": "As a product manager, I want checkout funnel events so that I can see where shoppers drop out.",
+      "acceptance": "Given a shopper moves through checkout\nWhen each step is reached, completed or abandoned\nThen a named event with the step and order value is emitted once\n\nGiven analytics is blocked by the browser\nWhen events fail to send\nThen checkout continues without error",
+      "points": 3,
+      "sprint": 4,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-01",
+      "story": "As a shopper on a phone, I want checkout usable at mobile width so that I can order on my phone.",
+      "acceptance": "Given a 375px viewport\nWhen checkout renders\nThen there is no horizontal scroll and every control is reachable with one thumb\n\nGiven the on-screen keyboard opens\nWhen a field is focused\nThen that field stays visible above the keyboard",
+      "points": 8,
+      "sprint": 4,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-01",
+      "story": "As a shopper using a keyboard or screen reader, I want to complete checkout unaided so that the service is usable for me.",
+      "acceptance": "Given keyboard-only navigation\nWhen the shopper tabs through checkout\nThen focus order follows the visual order and focus is always visible\n\nGiven a screen reader\nWhen a validation error appears\nThen it is announced and programmatically tied to its field",
+      "points": 5,
+      "sprint": 4,
+      "status": "Ready",
+      "notes": "WCAG 2.2 AA on the checkout flow; the wider audit is INI-11."
+    },
+    {
+      "epic": "INI-01",
+      "story": "As the team, I want the new checkout behind a flag so that we can roll it back without a deploy.",
+      "acceptance": "Given the flag is off\nWhen a shopper opens checkout\nThen the legacy checkout is served\n\nGiven the flag is on for a percentage of traffic\nWhen it is switched off\nThen new sessions fall back to legacy within one minute and in-flight orders still complete",
+      "points": 2,
+      "sprint": 4,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-02",
+      "story": "As the team, we want the monolith's billing read and write paths mapped so that extraction order is known.",
+      "acceptance": "Given the monolith codebase and database\nWhen the spike completes\nThen every caller of billing tables is listed with read/write intent and traffic volume\n\nGiven the map exists\nWhen the team reviews it\nThen the extraction order and the dual-write boundary are agreed and written down",
+      "points": 3,
+      "sprint": 1,
+      "status": "Ready",
+      "notes": "Time-boxed spike. Re-estimate the rest of the epic on its findings."
+    },
+    {
+      "epic": "INI-02",
+      "story": "As the team, we want a deployable billing service skeleton so that later stories have somewhere to land.",
+      "acceptance": "Given the service repository\nWhen CI runs on main\nThen it builds, tests, and deploys to staging with a passing health check\n\nGiven the service is deployed\nWhen /health is called\nThen it reports version and database connectivity",
+      "points": 5,
+      "sprint": 1,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-02",
+      "story": "As an internal consumer, I want invoices readable from the billing service so that I can stop querying the monolith.",
+      "acceptance": "Given an invoice that exists in the monolith database\nWhen it is fetched from the billing service API\nThen the payload matches the monolith's for every field in the contract\n\nGiven an unknown invoice id\nWhen it is fetched\nThen the service returns 404 with a machine-readable error",
+      "points": 5,
+      "sprint": 2,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-02",
+      "story": "As the team, we want invoice writes dual-written behind a flag so that we can verify the new store under real traffic.",
+      "acceptance": "Given the dual-write flag is on\nWhen an invoice is created in the monolith\nThen it is written to both stores and a mismatch raises an alert\n\nGiven the billing service is unavailable\nWhen an invoice is created\nThen the monolith write still succeeds and the missed write is queued for replay",
+      "points": 3,
+      "sprint": 2,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-02",
+      "story": "As the team, we want historical invoices backfilled and reconciled so that the new store is complete.",
+      "acceptance": "Given the backfill job runs to completion\nWhen the reconciliation report is produced\nThen row counts and checksums match per month, and any mismatch is listed by invoice id\n\nGiven the job is interrupted\nWhen it is restarted\nThen it resumes without duplicating rows",
+      "points": 8,
+      "sprint": 3,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-02",
+      "story": "As an internal consumer, I want invoice reads served by the billing service so that the monolith stops being the source.",
+      "acceptance": "Given the read-cutover flag is on\nWhen any consumer reads an invoice\nThen the billing service serves it and p99 latency stays within the agreed budget\n\nGiven error rate exceeds the threshold\nWhen the cutover is active\nThen traffic reverts to the monolith automatically and the team is paged",
+      "points": 5,
+      "sprint": 4,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-02",
+      "story": "As the team, we want the monolith's invoice endpoints retired so that there is one source of truth.",
+      "acceptance": "Given no caller has used a monolith invoice endpoint for the agreed observation window\nWhen the endpoints are removed\nThen the build passes and no consumer errors appear in the following 24 hours\n\nGiven a forgotten caller appears\nWhen it calls the removed endpoint\nThen it receives 410 Gone with the replacement URL",
+      "points": 3,
+      "sprint": 4,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-02",
+      "story": "As a subscriber, I want renewals processed by the billing service so that billing no longer depends on the monolith scheduler.",
+      "acceptance": "Given a subscription due for renewal\nWhen the billing service job runs\nThen exactly one renewal invoice is raised and the payment is attempted once\n\nGiven the job runs twice for the same period\nWhen the second run executes\nThen it is idempotent and raises no second invoice",
+      "points": 8,
+      "sprint": 5,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-03",
+      "story": "As a developer, I want the worst flaky tests identified and quarantined so that red builds mean something again.",
+      "acceptance": "Given 30 days of CI history\nWhen the flake report runs\nThen the 20 highest-flake tests are ranked by failure rate and quarantined from the blocking suite\n\nGiven a test is quarantined\nWhen it fails\nThen the build still passes and the failure is recorded against its ticket",
+      "points": 5,
+      "sprint": 2,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-03",
+      "story": "As a developer, I want time-dependent test failures fixed so that the suite passes regardless of when it runs.",
+      "acceptance": "Given tests that depend on the current clock, timezone or date boundaries\nWhen they are run with the clock set to a month end, a DST change and a leap day\nThen they pass in every case\n\nGiven the fixed tests\nWhen run 50 times in CI\nThen there are no failures",
+      "points": 5,
+      "sprint": 3,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-03",
+      "story": "As a developer, I want order-dependent test failures fixed so that tests can run in parallel.",
+      "acceptance": "Given tests that share fixtures or global state\nWhen the suite runs in randomised order and in parallel\nThen every test passes\n\nGiven a test leaks state\nWhen the suite runs\nThen the leak is caught by a teardown assertion rather than by a later test failing",
+      "points": 5,
+      "sprint": 4,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-03",
+      "story": "As a team, we want new flakes caught at the gate so that the backlog does not refill.",
+      "acceptance": "Given a dashboard of flake rate by test and by suite\nWhen a newly added test fails intermittently across 20 CI runs\nThen it is flagged on the dashboard and the owning team is notified\n\nGiven a pull request adds a test that flakes in pre-merge runs\nWhen the gate evaluates it\nThen the merge is blocked with the evidence",
+      "points": 5,
+      "sprint": 5,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-04",
+      "story": "As an on-call engineer, I want a current rotation and escalation runbook so that I know what to do at 3am.",
+      "acceptance": "Given the rotation is published\nWhen an alert fires outside working hours\nThen the paged engineer and the escalation path after 15 minutes are unambiguous\n\nGiven a new joiner takes their first shift\nWhen they follow the runbook\nThen they can acknowledge, triage and escalate without asking anyone",
+      "points": 3,
+      "sprint": 1,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-04",
+      "story": "As an engineering manager, I want a P1 bug SLA dashboard so that breaches are visible before they are complaints.",
+      "acceptance": "Given open P1 bugs\nWhen the dashboard refreshes\nThen time-to-acknowledge and time-to-fix are shown against the SLA with breaches highlighted\n\nGiven a P1 is raised\nWhen the acknowledge target is 30 minutes from being missed\nThen the owning team is notified",
+      "points": 3,
+      "sprint": 1,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-04",
+      "story": "As a customer, I want the standing P1 backlog cleared so that long-broken things get fixed.",
+      "acceptance": "Given the P1 bugs open at the start of the sprint\nWhen the sprint ends\nThen each is fixed, reclassified with a written reason, or closed as not reproducible\n\nGiven a fix ships\nWhen it is verified in production\nThen the originating report is updated and closed",
+      "points": 5,
+      "sprint": 2,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-04",
+      "story": "As an on-call engineer, I want the noisiest alerts fixed or muted so that pages mean something.",
+      "acceptance": "Given 30 days of alert history\nWhen the top five noisiest alerts are reviewed\nThen each is either made actionable, re-thresholded, or deleted with a reason recorded\n\nGiven the changes are live\nWhen the next week's pages are counted\nThen out-of-hours pages have fallen against the previous week",
+      "points": 1,
+      "sprint": 2,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-04",
+      "story": "As a security owner, I want dependencies and patches current so that known vulnerabilities are not left open.",
+      "acceptance": "Given the dependency scanner report\nWhen the sweep completes\nThen no critical or high advisory older than the agreed window remains unaddressed\n\nGiven a patch cannot be applied\nWhen it is deferred\nThen the reason, the compensating control and a review date are recorded",
+      "points": 3,
+      "sprint": 3,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-04",
+      "story": "As a support engineer, I want the most repeated manual request automated so that toil stops growing.",
+      "acceptance": "Given the support request log for the quarter\nWhen the most frequent manual request is automated as self-service\nThen a requester can complete it without engineering involvement\n\nGiven the automation fails\nWhen it errors\nThen the requester sees a clear message and the old manual path still works",
+      "points": 3,
+      "sprint": 3,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-04",
+      "story": "As a service owner, I want SLOs and error-budget alerts so that reliability is measured, not asserted.",
+      "acceptance": "Given the agreed SLIs for availability and latency\nWhen the error budget burn rate exceeds the fast-burn threshold\nThen the owning team is alerted with the contributing endpoints\n\nGiven a month closes\nWhen the SLO report is produced\nThen budget consumed and remaining are stated per service",
+      "points": 3,
+      "sprint": 4,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-04",
+      "story": "As a support engineer, I want handoff docs for the new billing service so that I can support it without the authors.",
+      "acceptance": "Given the billing service is serving reads\nWhen support receives a billing question\nThen the runbook names the dashboards, the common failure modes and their first-line remedies\n\nGiven an unfamiliar error\nWhen support follows the escalation section\nThen the owning team and the required diagnostic bundle are named",
+      "points": 3,
+      "sprint": 4,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-04",
+      "story": "As a compliance owner, I want a quarterly access review so that access matches current roles.",
+      "acceptance": "Given the access list for production systems\nWhen the review completes\nThen every entitlement is confirmed by the system owner or removed, and the evidence is retained\n\nGiven a leaver is found with live access\nWhen the review runs\nThen access is revoked the same day and the gap is recorded",
+      "points": 3,
+      "sprint": 5,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-04",
+      "story": "As a team, we want incident retro actions closed so that the same incident does not recur.",
+      "acceptance": "Given the retro actions raised this quarter\nWhen the sprint ends\nThen each is done or has a named owner and a date, with none silently dropped\n\nGiven an action is overdue by more than one sprint\nWhen the review runs\nThen it is escalated to the manager with the risk restated",
+      "points": 3,
+      "sprint": 5,
+      "status": "Ready",
+      "notes": ""
+    }
+  ]
+}
