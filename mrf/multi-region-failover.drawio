@@ -1,0 +1,85 @@
+<mxfile host="app.diagrams.net" agent="Claude" version="24.0.0">
+  <diagram id="failover" name="Failover timeouts &amp; health checks">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="&lt;b&gt;Multi-region failover: timeouts &amp;amp; health checks&lt;/b&gt;&lt;br&gt;15s end-to-end budget · Envoy fails over in ~10s, regardless of DNS TTL" style="text;html=1;align=left;verticalAlign=top;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="20" y="10" width="900" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend1" value="Failover decision point" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="20" width="170" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="legend2" value="Transport layer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="20" width="170" height="36" as="geometry" />
+        </mxCell>
+
+        <mxCell id="regionA" value="Region A (P0)" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#82b366;verticalAlign=top;align=left;spacingLeft=10;fontStyle=1;fontSize=13;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="815" y="95" width="780" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="akamai" value="&lt;b&gt;Akamai ALB cloudlet&lt;/b&gt;&lt;br&gt;Liveness /health/deep 10s, timeout 5s&lt;br&gt;Fail on 5xx only&lt;br&gt;Connect 3s · read &lt;b&gt;15s&lt;/b&gt;&lt;br&gt;Per-request retry on 5xx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="20" y="125" width="220" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="edgenlb" value="&lt;b&gt;Edge NLB&lt;/b&gt;&lt;br&gt;HC Envoy /ready HTTP 5s × 2&lt;br&gt;Dereg delay 30s&lt;br&gt;Idle 350s · cross-zone on" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="290" y="125" width="220" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="envoy" value="&lt;b&gt;Envoy (edge)&lt;/b&gt;&lt;br&gt;Route 14s · per-try 4.5s × 3&lt;br&gt;Connect 1s · idle 240s&lt;br&gt;Max conn age 120s&lt;br&gt;HC 3s × 3 → P1 failover" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#b85450;strokeWidth=2;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="560" y="125" width="220" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="pl" value="&lt;b&gt;PrivateLink endpoint&lt;/b&gt;&lt;br&gt;No health check&lt;br&gt;Idle drop at 350s&lt;br&gt;Regional DNS name" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="835" y="125" width="220" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="svcnlb" value="&lt;b&gt;Service NLB&lt;/b&gt;&lt;br&gt;HTTP /healthz 5s × 2&lt;br&gt;Dereg delay 30s&lt;br&gt;Cross-zone on&lt;br&gt;Fails open if all down" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="125" width="220" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="pods" value="&lt;b&gt;K8s service + pods&lt;/b&gt;&lt;br&gt;App timeout 4s&lt;br&gt;Readiness 5s × 2&lt;br&gt;preStop 20s · grace 45s&lt;br&gt;Keepalive idle ≥ 300s" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1365" y="125" width="220" height="115" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="akamai" target="edgenlb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="edgenlb" target="envoy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="P0" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;fontSize=11;" edge="1" parent="1" source="envoy" target="pl">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="pl" target="svcnlb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="svcnlb" target="pods">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="avi" value="&lt;b&gt;Avi GSLB (DNS only)&lt;/b&gt;&lt;br&gt;Monitor /health/deep 5s × 3&lt;br&gt;TTL 15s&lt;br&gt;Local → remote priority" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="560" y="330" width="220" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" value="resolves P0 name" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;dashed=1;fontSize=11;" edge="1" parent="1" source="envoy" target="avi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="regionB" value="&lt;b&gt;Region B (P1)&lt;/b&gt;: PrivateLink endpoint → Service NLB → pods (same health checks and timeouts)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;dashed=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="835" y="340" width="750" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" value="retry / failover to P1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;dashed=1;strokeColor=#b85450;fontSize=11;exitX=1;exitY=0.85;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="envoy" target="regionB">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rules" value="&lt;b&gt;Timeout rules&lt;/b&gt;&lt;br&gt;• &lt;b&gt;Idle:&lt;/b&gt; the caller closes first. Akamai keepalive &amp;lt; Envoy downstream 320s &amp;lt; edge NLB 350s&lt;br&gt;• Envoy upstream 240s &amp;lt; PrivateLink 350s &amp;lt; pod keepalive 300s+&lt;br&gt;• &lt;b&gt;Request (15s budget):&lt;/b&gt; app 4s &amp;lt; Envoy per-try 4.5s × 3 ≤ route 14s &amp;lt; Akamai read 15s&lt;br&gt;• Envoy returns a clean 504 before Akamai gives up&lt;br&gt;• Retry only idempotent routes on 5xx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fontSize=12;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="20" y="470" width="520" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="envoynotes" value="&lt;b&gt;Envoy: beat the DNS TTL&lt;/b&gt;&lt;br&gt;• STRICT_DNS + respect_dns_ttl: true; every resolved IP is health-checked&lt;br&gt;• P0 = GSLB name, P1 = remote region name; healthy_panic_threshold: 0&lt;br&gt;• Active HC /health/deep 3s × 3 (healthy 3) → ~9s failover, inside one 15s request&lt;br&gt;• Outlier detection (3 gateway errors) + retries via previous_priorities cover the gap&lt;br&gt;• max_connection_duration: 120s forces reconnect and re-resolve&lt;br&gt;• health_check filter (min 50% healthy) lets Akamai fail the region only when Envoy is stuck" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fontSize=12;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="560" y="470" width="1025" height="170" as="geometry" />
+        </mxCell>
+
+        <mxCell id="budget" value="&lt;b&gt;Failover budget:&lt;/b&gt; external ≈ 15–30s · internal via Envoy ≈ 10s · plain-DNS clients ≈ 30–60s" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="20" y="665" width="1000" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
