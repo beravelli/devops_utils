@@ -35,7 +35,7 @@ roadmap demand — an **87.3% annual load**, with every quarter between 86% and 
 | Team Capacity | Roster with FTE, allocation, ramp factor, PTO, plus a PTO reconciliation check |
 | Sprint Plan | The baseline sprint by sprint: dev-days, commitable points, planned, load %, actuals, rolling velocity |
 | Annual Plan | Roadmap epics: estimate / confidence = risk-adjusted size, spread over a sprint range |
-| Stories | Fine-grained stories per epic, with reconciliation against epic estimates and sprint capacity |
+| Stories | 128 stories across the 16 epics, reconciled against epic estimates and sprint capacity |
 | Dashboard | Supply vs demand by quarter, investment mix vs target, baseline reconciliation |
 
 ## Files, and the order to run them
@@ -70,8 +70,11 @@ in a session opened on this repo and it reads the epics, splits them into 1/2/3/
 point stories with Given/When/Then acceptance criteria, assigns them to sprints
 inside each epic's range, and reconciles the totals.
 
-The Q1 epics are broken down as a worked example — 35 stories, 160 points, each epic
-reconciling exactly to its estimate. The other 12 epics are left for the skill to do.
+All 16 epics are broken down: **128 stories, 525 points**, every epic reconciling
+exactly to its estimate and no sprint over capacity (the fullest is S08 at 90%).
+Points sit on the 1/2/3/5/8 scale, each story carries Given/When/Then criteria, and
+each is assigned inside its epic's sprint range. `stories-input.json` is the source;
+regenerate the tab from it rather than editing the tab.
 
 Story points reconcile against an epic's **estimate**, not its risk-adjusted size,
 so assigned story points per sprint sit well below the plan's own Load %: the gap is

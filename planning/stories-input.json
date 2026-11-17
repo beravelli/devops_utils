@@ -314,6 +314,843 @@
       "sprint": 5,
       "status": "Ready",
       "notes": ""
+    },
+    {
+      "epic": "INI-05",
+      "story": "As a returning shopper, I want my card saved securely so that I need not re-enter it.",
+      "acceptance": "Given a shopper who opts to save their card\nWhen the order completes\nThen only the provider token is stored and the card number never reaches our systems\n\nGiven a saved card has expired\nWhen checkout renders\nThen it is shown as expired and cannot be selected",
+      "points": 8,
+      "sprint": 6,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-05",
+      "story": "As a repeat buyer, I want to reorder a past order in one click so that routine purchases take seconds.",
+      "acceptance": "Given a past order whose items are all still available\nWhen the shopper chooses Reorder\nThen the basket is filled and checkout opens with the previous address and payment selected\n\nGiven an item is discontinued\nWhen Reorder runs\nThen the available items are added and the missing ones are listed",
+      "points": 5,
+      "sprint": 6,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-05",
+      "story": "As a shopper with several addresses, I want to pick from an address book so that I can send orders elsewhere.",
+      "acceptance": "Given a shopper with two or more saved addresses\nWhen checkout renders\nThen each is selectable and the default is pre-selected\n\nGiven an address is edited during checkout\nWhen the order completes\nThen the change is saved against the address book, not just the order",
+      "points": 3,
+      "sprint": 6,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-05",
+      "story": "As a shopper, I want to split payment across two methods so that I can combine a gift card with a card.",
+      "acceptance": "Given a basket and a gift card with partial balance\nWhen the shopper applies the gift card and a card\nThen the gift card is drawn down first and the card covers the remainder\n\nGiven the second payment fails\nWhen the order is submitted\nThen the gift card draw-down is reversed and no order is created",
+      "points": 8,
+      "sprint": 7,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-05",
+      "story": "As a mobile shopper, I want to pay with a digital wallet so that I can check out without typing.",
+      "acceptance": "Given a device with a wallet configured\nWhen the shopper chooses wallet payment\nThen the sheet opens pre-filled and a successful authorisation creates the order\n\nGiven the wallet is unavailable on the device\nWhen checkout renders\nThen the option is hidden rather than shown failing",
+      "points": 5,
+      "sprint": 7,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-05",
+      "story": "As a gift buyer, I want to add a message and delivery instructions so that the parcel arrives as intended.",
+      "acceptance": "Given a shopper adds a gift message within the length limit\nWhen the order is placed\nThen the message appears on the packing slip and not on the invoice\n\nGiven instructions exceed the courier's field length\nWhen the shopper types\nThen the limit is enforced with a visible counter",
+      "points": 3,
+      "sprint": 7,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-05",
+      "story": "As a regular customer, I want to set up a recurring order at checkout so that I stop reordering manually.",
+      "acceptance": "Given a basket eligible for subscription\nWhen the shopper selects a delivery interval\nThen a subscription is created and the first order is placed immediately\n\nGiven the shopper cancels before the next cycle\nWhen the cycle date arrives\nThen no order and no charge are raised",
+      "points": 8,
+      "sprint": 8,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-05",
+      "story": "As a shopper, I want to choose a delivery slot so that I am home when it arrives.",
+      "acceptance": "Given a postcode with slot availability\nWhen checkout renders\nThen the next available slots are shown with any surcharge stated\n\nGiven the chosen slot sells out before submission\nWhen the order is placed\nThen the shopper is asked to re-pick and is not charged the surcharge twice",
+      "points": 5,
+      "sprint": 8,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-05",
+      "story": "As a merchandiser, I want a post-purchase offer slot so that confirmation pages earn their traffic.",
+      "acceptance": "Given a completed order\nWhen the confirmation page renders\nThen one relevant offer is shown and its impressions and clicks are logged\n\nGiven no relevant offer exists\nWhen the page renders\nThen the slot collapses without leaving empty space",
+      "points": 3,
+      "sprint": 8,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-06",
+      "story": "As the team, we want a written parity gap list so that mobile work is scoped from evidence.",
+      "acceptance": "Given the web and mobile checkout flows\nWhen the audit completes\nThen every gap is listed with its user impact and an estimate\n\nGiven the list is agreed\nWhen the epic is re-planned\nThen the remaining stories cover every gap marked must-have",
+      "points": 2,
+      "sprint": 6,
+      "status": "Ready",
+      "notes": "Time-boxed. Re-estimate the epic on its findings."
+    },
+    {
+      "epic": "INI-06",
+      "story": "As a mobile shopper, I want saved addresses and wallet payment in the app so that checkout matches the web.",
+      "acceptance": "Given a signed-in app user with a saved address and wallet\nWhen they open checkout in the app\nThen both are available and pre-selected as on the web\n\nGiven the app is offline at checkout\nWhen payment is attempted\nThen a clear offline message is shown and the basket is preserved",
+      "points": 5,
+      "sprint": 6,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-06",
+      "story": "As a mobile shopper, I want order status pushed to my phone so that I need not check the app.",
+      "acceptance": "Given a shopper who has granted notification permission\nWhen the order ships or is delivered\nThen a push arrives once per event with the order reference\n\nGiven permission is denied\nWhen the event occurs\nThen no push is attempted and in-app status still updates",
+      "points": 5,
+      "sprint": 7,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-06",
+      "story": "As a mobile shopper, I want a notification to open the right screen so that I am not dropped on the home page.",
+      "acceptance": "Given a shipping notification for a specific order\nWhen the shopper taps it\nThen the app opens that order's detail screen, installing state permitting\n\nGiven the app is not installed\nWhen the link is followed\nThen the mobile web order page opens instead",
+      "points": 2,
+      "sprint": 7,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-06",
+      "story": "As a mobile shopper on a poor connection, I want my basket kept so that I do not lose my selections.",
+      "acceptance": "Given items added while offline\nWhen connectivity returns\nThen the basket syncs without duplicating lines\n\nGiven the same account adds items on web and app while offline\nWhen both sync\nThen the merge is deterministic and the shopper is told what changed",
+      "points": 5,
+      "sprint": 8,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-06",
+      "story": "As a mobile shopper, I want promo codes to work in the app so that advertised offers apply everywhere.",
+      "acceptance": "Given a valid promo code\nWhen entered in the app\nThen the same discount applies as on the web\n\nGiven a web-only code\nWhen entered in the app\nThen it is rejected with the reason stated",
+      "points": 2,
+      "sprint": 8,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-06",
+      "story": "As a mobile shopper, I want biometric sign-in so that I can return without typing a password.",
+      "acceptance": "Given a device with biometrics enrolled\nWhen the shopper opts in\nThen later launches authenticate biometrically and no password is stored on device\n\nGiven biometric authentication fails three times\nWhen the shopper retries\nThen password sign-in is offered",
+      "points": 5,
+      "sprint": 9,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-06",
+      "story": "As a release manager, I want a staged app rollout so that a bad build reaches few users.",
+      "acceptance": "Given a release candidate\nWhen it is published\nThen it goes to a small percentage first and crash-free rate is monitored against the threshold\n\nGiven the threshold is breached\nWhen the rollout is halted\nThen the previous version remains available to new installs",
+      "points": 1,
+      "sprint": 9,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-07",
+      "story": "As an engineer, I want structured logs with trace ids so that I can follow one request end to end.",
+      "acceptance": "Given a request entering any service\nWhen it is logged\nThen the entry is JSON with a trace id propagated to downstream calls\n\nGiven a log search by trace id\nWhen it runs\nThen every hop of that request is returned in order",
+      "points": 5,
+      "sprint": 7,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-07",
+      "story": "As a data protection owner, I want logs scrubbed and expiring so that we do not hoard personal data.",
+      "acceptance": "Given a log line containing an email, card fragment or token\nWhen it is written\nThen the value is redacted at source\n\nGiven the retention window passes\nWhen the lifecycle job runs\nThen the entries are deleted and the deletion is auditable",
+      "points": 3,
+      "sprint": 7,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-07",
+      "story": "As an engineer, I want tracing across checkout and billing so that latency can be attributed.",
+      "acceptance": "Given a checkout request that calls the billing service\nWhen the trace is viewed\nThen each span shows its duration and the slowest hop is identifiable\n\nGiven a downstream call fails\nWhen the trace is viewed\nThen the error and its span are marked",
+      "points": 8,
+      "sprint": 8,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-07",
+      "story": "As a platform owner, I want sampling configurable per route so that tracing cost stays bounded.",
+      "acceptance": "Given a high-traffic route\nWhen its sampling rate is lowered\nThen trace volume drops accordingly without code changes\n\nGiven an error response\nWhen sampling would drop it\nThen it is retained regardless of rate",
+      "points": 1,
+      "sprint": 8,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-07",
+      "story": "As a service owner, I want an SLO dashboard per service so that reliability is visible at a glance.",
+      "acceptance": "Given the agreed availability and latency SLIs\nWhen the dashboard loads\nThen current compliance, budget consumed and budget remaining are shown per service\n\nGiven a service has no SLO defined\nWhen the dashboard loads\nThen it is listed as unmeasured rather than omitted",
+      "points": 5,
+      "sprint": 9,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-07",
+      "story": "As an on-call engineer, I want burn-rate alerts so that I am paged before the budget is gone.",
+      "acceptance": "Given a fast burn of the error budget\nWhen the threshold is crossed\nThen on-call is paged with the service and contributing endpoints\n\nGiven a slow burn\nWhen the threshold is crossed\nThen a ticket is raised instead of a page",
+      "points": 3,
+      "sprint": 9,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-08",
+      "story": "As an engineering manager, I want the P1 SLA held through Q2 so that reliability work does not slip.",
+      "acceptance": "Given P1 bugs raised during the quarter\nWhen the quarter closes\nThen the acknowledge and fix targets were met for the agreed percentage\n\nGiven a breach occurs\nWhen it is reviewed\nThen the cause is recorded and an action is raised",
+      "points": 3,
+      "sprint": 6,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-08",
+      "story": "As a security owner, I want the Q2 patch sweep done so that advisories do not accumulate.",
+      "acceptance": "Given the scanner report at sweep time\nWhen the sweep completes\nThen no critical or high advisory beyond the agreed age remains open\n\nGiven a patch breaks a test\nWhen it is held back\nThen the reason and review date are recorded",
+      "points": 3,
+      "sprint": 6,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-08",
+      "story": "As an on-call engineer, I want shift reports generated so that handover is not from memory.",
+      "acceptance": "Given a shift ends\nWhen the report is generated\nThen pages, their resolutions and open follow-ups are listed automatically\n\nGiven nothing happened\nWhen the shift ends\nThen a quiet-shift report is still produced",
+      "points": 3,
+      "sprint": 7,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-08",
+      "story": "As an on-call engineer, I want the top alerts' runbooks current so that I am not guessing.",
+      "acceptance": "Given the three most frequent alerts\nWhen each runbook is reviewed\nThen the steps match the current system and were executed once to confirm\n\nGiven a runbook step is obsolete\nWhen it is found\nThen it is corrected or deleted rather than left",
+      "points": 3,
+      "sprint": 7,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-08",
+      "story": "As a support engineer, I want the second most common request automated so that toil keeps falling.",
+      "acceptance": "Given the quarter's request log\nWhen the second most frequent manual request is automated\nThen requesters can self-serve it without engineering\n\nGiven the automation errors\nWhen it fails\nThen the manual path still works and the failure is logged",
+      "points": 5,
+      "sprint": 8,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-08",
+      "story": "As a developer, I want dead feature flags removed so that the code stops branching on history.",
+      "acceptance": "Given flags fully rolled out or abandoned for over 90 days\nWhen the cleanup runs\nThen the flag and its dead branch are deleted and tests still pass\n\nGiven a flag is still referenced\nWhen cleanup is attempted\nThen it is skipped and reported",
+      "points": 1,
+      "sprint": 8,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-08",
+      "story": "As a team, we want Q2 retro actions closed so that incidents teach us something.",
+      "acceptance": "Given retro actions raised in the quarter\nWhen it closes\nThen each is done or has an owner and a date\n\nGiven an action is overdue a full sprint\nWhen the review runs\nThen it is escalated with the risk restated",
+      "points": 3,
+      "sprint": 9,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-08",
+      "story": "As a compliance owner, I want the Q2 access review completed so that entitlements match roles.",
+      "acceptance": "Given the production access list\nWhen the review completes\nThen every entitlement is confirmed or revoked with evidence retained\n\nGiven a leaver still has access\nWhen found\nThen it is revoked the same day and recorded",
+      "points": 2,
+      "sprint": 9,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-08",
+      "story": "As a service owner, I want a restore drill so that backups are known to work.",
+      "acceptance": "Given the latest backup\nWhen it is restored to an isolated environment\nThen integrity checks pass and the restore time is recorded against the RTO\n\nGiven the restore fails\nWhen the drill ends\nThen a P1 is raised against the backup system",
+      "points": 2,
+      "sprint": 9,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-09",
+      "story": "As an enterprise admin, I want SAML single sign-on so that my staff use our own identity provider.",
+      "acceptance": "Given exchanged SAML metadata with one IdP\nWhen a user authenticates there\nThen a session is created with identity mapped from the assertion\n\nGiven an assertion is expired, unsigned or replayed\nWhen it is presented\nThen authentication is refused and the attempt is logged",
+      "points": 8,
+      "sprint": 10,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-09",
+      "story": "As an enterprise user, I want sign-in to work from either side so that I can start at our portal or yours.",
+      "acceptance": "Given an IdP-initiated login\nWhen the user clicks the app tile\nThen they land signed in on the app home page\n\nGiven an SP-initiated login\nWhen the user enters their work email\nThen they are redirected to the right IdP by domain",
+      "points": 5,
+      "sprint": 10,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-09",
+      "story": "As an enterprise admin, I want users provisioned automatically so that onboarding needs no tickets.",
+      "acceptance": "Given SCIM is configured\nWhen a user is assigned the app in the IdP\nThen the account is created with the mapped attributes within the agreed interval\n\nGiven an attribute changes in the IdP\nWhen SCIM syncs\nThen the account is updated and not duplicated",
+      "points": 8,
+      "sprint": 11,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-09",
+      "story": "As a security owner, I want deprovisioning to cut access immediately so that leavers lose it at once.",
+      "acceptance": "Given a user is unassigned or deactivated in the IdP\nWhen SCIM syncs\nThen the account is disabled and existing sessions and tokens are revoked\n\nGiven SCIM is unreachable\nWhen the sync window is missed\nThen an alert is raised rather than failing silently",
+      "points": 5,
+      "sprint": 11,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-09",
+      "story": "As an enterprise admin, I want IdP groups mapped to roles so that permissions follow our directory.",
+      "acceptance": "Given a mapping from IdP groups to application roles\nWhen a user signs in\nThen their roles match their current group membership\n\nGiven a user is in no mapped group\nWhen they sign in\nThen they get the configured default role and the gap is logged",
+      "points": 8,
+      "sprint": 12,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-09",
+      "story": "As an enterprise admin, I want to configure and test SSO myself so that setup needs no support ticket.",
+      "acceptance": "Given an admin on the SSO settings page\nWhen they paste metadata and run Test connection\nThen the result states success or the precise failure\n\nGiven a misconfiguration is saved\nWhen existing users sign in\nThen the previous working config stays active until the test passes",
+      "points": 3,
+      "sprint": 12,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-09",
+      "story": "As a platform owner, I want a break-glass local login so that an IdP outage does not lock everyone out.",
+      "acceptance": "Given SSO is enforced and the IdP is unreachable\nWhen a designated break-glass admin signs in locally with MFA\nThen access is granted and every use is alerted and audited\n\nGiven a non-designated user attempts it\nWhen they try\nThen it is refused",
+      "points": 3,
+      "sprint": 12,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-10",
+      "story": "As the team, we want the target schema and migration order agreed so that the move is not improvised.",
+      "acceptance": "Given the current warehouse and its consumers\nWhen the spike completes\nThen the target schema, the migration order and the cutover criteria are written down\n\nGiven the plan is reviewed\nWhen risks are listed\nThen each has a mitigation or an explicit acceptance",
+      "points": 3,
+      "sprint": 10,
+      "status": "Ready",
+      "notes": "Time-boxed spike; re-estimate the epic afterwards."
+    },
+    {
+      "epic": "INI-10",
+      "story": "As a data engineer, I want one source ingesting into the new platform so that the pipeline is proven end to end.",
+      "acceptance": "Given the landing zone exists\nWhen the first source's daily load runs\nThen rows arrive partitioned and typed as designed, with failures alerting\n\nGiven a malformed batch\nWhen it is ingested\nThen it is quarantined without blocking the rest",
+      "points": 5,
+      "sprint": 10,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-10",
+      "story": "As an analyst, I want history backfilled so that trends do not start at the migration date.",
+      "acceptance": "Given the agreed history window\nWhen the backfill completes\nThen partitions exist for every period with row counts matching the source per month\n\nGiven the backfill is interrupted\nWhen restarted\nThen it resumes without duplicating partitions",
+      "points": 8,
+      "sprint": 11,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-10",
+      "story": "As a data engineer, I want an automated parity check so that drift is caught early.",
+      "acceptance": "Given both platforms are loaded for the same day\nWhen the parity job runs\nThen row counts and key checksums are compared and differences are reported by table\n\nGiven a mismatch exceeds the threshold\nWhen the job finishes\nThen the owning team is alerted",
+      "points": 1,
+      "sprint": 11,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-10",
+      "story": "As an analyst, I want the reporting models rebuilt so that dashboards have something to read.",
+      "acceptance": "Given the core reporting models\nWhen they are rebuilt on the new platform\nThen each returns the same results as the old for a sampled date range\n\nGiven a model cannot match\nWhen the difference is investigated\nThen the cause is documented and signed off or fixed",
+      "points": 5,
+      "sprint": 12,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-10",
+      "story": "As a data owner, I want both pipelines run in parallel with a diff report so that cutover is evidence-based.",
+      "acceptance": "Given both pipelines running daily\nWhen the diff report is produced\nThen per-table differences are listed with severity\n\nGiven the report is clean for the agreed number of consecutive days\nWhen cutover is proposed\nThen the criteria are demonstrably met",
+      "points": 5,
+      "sprint": 12,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-10",
+      "story": "As an analyst, I want dashboards pointed at the new platform so that there is one place to look.",
+      "acceptance": "Given the cutover criteria are met\nWhen dashboards are repointed\nThen each loads within its latency budget and figures match the last parallel-run day\n\nGiven a dashboard breaks\nWhen it is found\nThen it can be repointed back within the day",
+      "points": 5,
+      "sprint": 13,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-10",
+      "story": "As a platform owner, I want the old pipeline decommissioned so that we stop paying twice.",
+      "acceptance": "Given dashboards and consumers are on the new platform\nWhen the old pipeline is disabled\nThen no consumer errors appear for the agreed observation window and the cost drop is visible\n\nGiven a forgotten consumer surfaces\nWhen it fails\nThen the runbook names the migration path",
+      "points": 3,
+      "sprint": 13,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-11",
+      "story": "As the team, we want automated accessibility checks in CI so that regressions are caught at the gate.",
+      "acceptance": "Given the primary journeys\nWhen CI runs the scan\nThen violations are reported against a recorded baseline and new ones fail the build\n\nGiven a violation cannot be fixed immediately\nWhen it is added to the baseline\nThen it carries an owner and a review date",
+      "points": 3,
+      "sprint": 11,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-11",
+      "story": "As a partially sighted user, I want sufficient contrast and visible focus so that I can see where I am.",
+      "acceptance": "Given every text and control style\nWhen measured\nThen contrast meets WCAG 2.2 AA and focus indicators are visible against every background\n\nGiven a brand colour cannot meet contrast\nWhen it is used for text\nThen an accessible variant is substituted",
+      "points": 5,
+      "sprint": 11,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-11",
+      "story": "As a keyboard user, I want no focus traps and working skip links so that I can move through a page.",
+      "acceptance": "Given each primary journey\nWhen navigated by keyboard only\nThen focus never becomes trapped and a skip link reaches the main content\n\nGiven a modal opens\nWhen it closes\nThen focus returns to the element that opened it",
+      "points": 5,
+      "sprint": 12,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-11",
+      "story": "As a screen reader user, I want the top journeys announced correctly so that I can complete them unaided.",
+      "acceptance": "Given the five highest-traffic journeys\nWhen traversed with a screen reader\nThen headings, landmarks, labels and errors are announced meaningfully and the task completes\n\nGiven a control has no accessible name\nWhen found\nThen it is fixed rather than suppressed",
+      "points": 5,
+      "sprint": 13,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-12",
+      "story": "As an engineering manager, I want the P1 SLA held through Q3 so that the standard does not slip in summer.",
+      "acceptance": "Given P1 bugs raised in the quarter\nWhen it closes\nThen targets were met for the agreed percentage despite holiday cover\n\nGiven a breach occurs\nWhen reviewed\nThen the cause is recorded and an action raised",
+      "points": 3,
+      "sprint": 10,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-12",
+      "story": "As a security owner, I want the Q3 patch sweep done so that advisories stay current.",
+      "acceptance": "Given the scanner report\nWhen the sweep completes\nThen no critical or high advisory beyond the agreed age remains open\n\nGiven a deferral\nWhen recorded\nThen it names the compensating control and a review date",
+      "points": 3,
+      "sprint": 10,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-12",
+      "story": "As an on-call engineer, I want the quarter's alert noise reviewed so that pages stay meaningful.",
+      "acceptance": "Given the quarter's alert history\nWhen the noisiest are reviewed\nThen each is made actionable, re-thresholded or deleted with a reason\n\nGiven changes are live\nWhen the next fortnight is counted\nThen out-of-hours pages have not risen",
+      "points": 1,
+      "sprint": 10,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-12",
+      "story": "As an engineering manager, I want summer cover planned so that holidays do not leave gaps.",
+      "acceptance": "Given the team's booked leave for the quarter\nWhen the rota is published\nThen every shift has a named primary and secondary with no one double-booked\n\nGiven a last-minute absence\nWhen the swap process is followed\nThen cover is reassigned and the rota updated the same day",
+      "points": 2,
+      "sprint": 11,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-12",
+      "story": "As a support engineer, I want the third request type automated so that toil keeps shrinking.",
+      "acceptance": "Given the request log\nWhen the third most frequent manual request is automated\nThen it is self-service and its volume is tracked\n\nGiven the automation is unavailable\nWhen a request arrives\nThen the manual fallback is documented and works",
+      "points": 5,
+      "sprint": 11,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-12",
+      "story": "As a platform owner, I want capacity and cost thresholds reviewed so that alerts match current scale.",
+      "acceptance": "Given the quarter's growth\nWhen thresholds are reviewed\nThen each capacity and cost alert reflects current baselines rather than last year's\n\nGiven a threshold has not fired in a year\nWhen reviewed\nThen it is re-set or retired",
+      "points": 2,
+      "sprint": 12,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-12",
+      "story": "As a team, we want Q3 retro actions closed so that the same failures do not repeat.",
+      "acceptance": "Given the quarter's retro actions\nWhen it closes\nThen each is done or has an owner and a date\n\nGiven one is overdue a full sprint\nWhen reviewed\nThen it is escalated",
+      "points": 3,
+      "sprint": 12,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-12",
+      "story": "As a compliance owner, I want the Q3 access review completed so that the quarterly cadence holds.",
+      "acceptance": "Given the access list\nWhen the review completes\nThen entitlements are confirmed or revoked with evidence retained\n\nGiven an anomaly\nWhen found\nThen it is remediated the same day and recorded",
+      "points": 2,
+      "sprint": 12,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-12",
+      "story": "As a service owner, I want a failover drill so that disaster recovery is tested, not assumed.",
+      "acceptance": "Given the documented DR procedure\nWhen failover is exercised in a controlled window\nThen the service recovers within the RTO and data loss is within the RPO\n\nGiven a step fails\nWhen the drill ends\nThen the gap is raised as a P1 against the runbook",
+      "points": 5,
+      "sprint": 13,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-12",
+      "story": "As an on-call engineer, I want runbooks corrected after the drill so that the lessons are not lost.",
+      "acceptance": "Given the drill's findings\nWhen runbooks are revised\nThen every incorrect step is fixed and the revision is dated\n\nGiven a finding needs engineering work\nWhen it cannot be fixed in the runbook\nThen a ticket is raised and linked from it",
+      "points": 2,
+      "sprint": 13,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-13",
+      "story": "As a product manager, I want an experiment framework so that pricing changes can be measured, not guessed.",
+      "acceptance": "Given an experiment with two variants and a traffic split\nWhen a visitor is assigned\nThen the assignment is sticky across sessions and the exposure is logged once\n\nGiven a visitor is in a mutually exclusive experiment\nWhen assignment runs\nThen they are not enrolled in both",
+      "points": 8,
+      "sprint": 14,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-13",
+      "story": "As a product manager, I want the pricing page to render variants so that packaging can be tested.",
+      "acceptance": "Given a variant configuration\nWhen the pricing page renders\nThen the correct plans, prices and feature lists are shown for that variant\n\nGiven the configuration is invalid\nWhen the page renders\nThen the control variant is served and the error is alerted",
+      "points": 5,
+      "sprint": 14,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-13",
+      "story": "As a product manager, I want packaging changes behind a flag so that we can change plans without a deploy.",
+      "acceptance": "Given a new plan definition\nWhen the flag is enabled for a cohort\nThen new signups see it and existing customers are unaffected\n\nGiven the flag is switched off\nWhen a customer is mid-signup\nThen their session completes on the plan they were shown",
+      "points": 8,
+      "sprint": 15,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-13",
+      "story": "As a finance owner, I want guardrail metrics with an automatic stop so that a bad test cannot run for weeks.",
+      "acceptance": "Given guardrails for conversion and average order value\nWhen a variant breaches one beyond the agreed margin\nThen the experiment stops automatically and the owner is notified\n\nGiven the test reaches its sample size\nWhen significance is computed\nThen the readout states the result and the confidence interval",
+      "points": 5,
+      "sprint": 15,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-13",
+      "story": "As a customer changing plan mid-cycle, I want fair proration so that I am charged only for what I used.",
+      "acceptance": "Given a customer upgrades mid-cycle\nWhen the change is applied\nThen the invoice prorates the unused portion and the next renewal date is unchanged\n\nGiven a downgrade mid-cycle\nWhen it is applied\nThen the credit is applied to the next invoice rather than refunded by default",
+      "points": 8,
+      "sprint": 16,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-13",
+      "story": "As a product manager, I want a written readout and decision so that the experiment changes something.",
+      "acceptance": "Given a completed experiment\nWhen the readout is produced\nThen it states the metric movement, the confidence and the decision taken\n\nGiven the result is inconclusive\nWhen the readout is written\nThen it says so and names the next step rather than claiming a winner",
+      "points": 3,
+      "sprint": 16,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-13",
+      "story": "As an existing customer, I want my current price honoured so that a packaging change does not raise my bill.",
+      "acceptance": "Given a customer on a retired plan\nWhen packaging changes\nThen their price and entitlements are unchanged and the grandfathering is recorded\n\nGiven they choose to move to a new plan\nWhen they switch\nThen the grandfathered price is forfeited only with explicit confirmation",
+      "points": 3,
+      "sprint": 16,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-14",
+      "story": "As a platform owner, I want cost attributed by service and environment so that spend has an owner.",
+      "acceptance": "Given tagged infrastructure\nWhen the cost report runs\nThen spend is broken down by service and environment with untagged spend shown separately\n\nGiven untagged spend exceeds the threshold\nWhen the report runs\nThen the offending resources are listed for tagging",
+      "points": 5,
+      "sprint": 14,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-14",
+      "story": "As a team lead, I want budget alerts so that overspend surfaces during the month, not after.",
+      "acceptance": "Given a monthly budget per team\nWhen projected spend exceeds it\nThen the team lead is alerted with the largest contributors\n\nGiven spend is within budget\nWhen the month closes\nThen a summary is still sent",
+      "points": 1,
+      "sprint": 14,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-14",
+      "story": "As a platform owner, I want over-provisioned compute right-sized so that we stop paying for idle capacity.",
+      "acceptance": "Given 30 days of utilisation data\nWhen instances are resized to the recommended class\nThen p95 utilisation sits in the target band and no SLO is breached in the following week\n\nGiven a resize degrades performance\nWhen detected\nThen it is reverted within the hour",
+      "points": 3,
+      "sprint": 15,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-14",
+      "story": "As a platform owner, I want orphaned resources deleted so that we stop paying for nothing.",
+      "acceptance": "Given unattached volumes, idle load balancers and unused IPs older than the grace period\nWhen the cleanup runs\nThen each is snapshotted where relevant and deleted, with the saving recorded\n\nGiven a resource is referenced by any stack\nWhen cleanup runs\nThen it is skipped and reported",
+      "points": 3,
+      "sprint": 15,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-14",
+      "story": "As a platform owner, I want lifecycle policies on logs and backups so that storage stops growing unbounded.",
+      "acceptance": "Given retention agreed with the data owner\nWhen policies are applied\nThen objects transition to colder tiers and expire on schedule\n\nGiven a compliance hold exists\nWhen the policy would delete held data\nThen it is exempted and the exemption is recorded",
+      "points": 5,
+      "sprint": 16,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-14",
+      "story": "As a platform owner, I want non-production shut down out of hours so that idle environments cost nothing.",
+      "acceptance": "Given a non-production environment and a working-hours schedule\nWhen the schedule applies\nThen the environment stops outside those hours and starts before they begin\n\nGiven an engineer needs it out of hours\nWhen they request an extension\nThen it stays up for the stated window",
+      "points": 2,
+      "sprint": 16,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-14",
+      "story": "As a finance owner, I want a committed-use recommendation so that steady workloads are not billed at list price.",
+      "acceptance": "Given 90 days of steady-state usage\nWhen the analysis completes\nThen it recommends a commitment term and size with the projected saving and the break-even point\n\nGiven usage is not steady\nWhen the analysis runs\nThen it says so rather than recommending a commitment",
+      "points": 3,
+      "sprint": 17,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-14",
+      "story": "As a team, we want a monthly cost review so that savings do not quietly erode.",
+      "acceptance": "Given the attribution report\nWhen the monthly review runs\nThen month-on-month movement is explained per service and actions are assigned\n\nGiven spend rises more than the agreed percentage\nWhen unexplained\nThen an investigation is raised",
+      "points": 3,
+      "sprint": 17,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-15",
+      "story": "As the team, we want every v1 consumer identified so that nobody is surprised by the shutdown.",
+      "acceptance": "Given 90 days of access logs\nWhen the inventory is produced\nThen every v1 caller is listed with its traffic, owner and contact\n\nGiven a caller cannot be attributed\nWhen the inventory is reviewed\nThen it is flagged for investigation before any shutdown step",
+      "points": 3,
+      "sprint": 15,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-15",
+      "story": "As a v1 consumer, I want a migration guide so that moving to v2 is mechanical.",
+      "acceptance": "Given the v1 and v2 contracts\nWhen the guide is published\nThen every v1 endpoint maps to its v2 equivalent with request and response differences shown\n\nGiven a v1 feature has no v2 equivalent\nWhen the guide is written\nThen the gap is stated with the intended workaround",
+      "points": 2,
+      "sprint": 15,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-15",
+      "story": "As a v1 consumer, I want machine-readable deprecation notice so that my tooling can warn me.",
+      "acceptance": "Given a request to any v1 endpoint\nWhen it is served\nThen Deprecation and Sunset headers carry the date and a link to the guide\n\nGiven the sunset date changes\nWhen it is updated\nThen the headers reflect the new date without a client change",
+      "points": 5,
+      "sprint": 15,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-15",
+      "story": "As the team, we want the largest consumers migrated so that the long tail is all that remains.",
+      "acceptance": "Given the consumers covering the bulk of v1 traffic\nWhen each has been contacted and supported\nThen their traffic has moved to v2 and v1 calls from them have ceased\n\nGiven a consumer cannot migrate before sunset\nWhen they say so\nThen an exception with an end date is agreed and recorded",
+      "points": 5,
+      "sprint": 16,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-15",
+      "story": "As a v1 consumer, I want the gaps in v2 closed so that nothing forces me to stay on v1.",
+      "acceptance": "Given the gap list from the migration guide\nWhen each must-have gap is implemented in v2\nThen the previously blocked consumers can migrate\n\nGiven a gap is deliberately not closed\nWhen the decision is made\nThen the affected consumers are told before the sunset date",
+      "points": 5,
+      "sprint": 16,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-15",
+      "story": "As a platform owner, I want v1 brown-outs on a schedule so that remaining callers notice before the cliff.",
+      "acceptance": "Given the published schedule\nWhen a brown-out window begins\nThen v1 returns 503 with a Retry-After and the guide link for that window only\n\nGiven a brown-out causes a customer-facing incident\nWhen it is detected\nThen the window is ended immediately and the schedule is revisited",
+      "points": 5,
+      "sprint": 17,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-15",
+      "story": "As a developer, I want v1 code and routes removed so that we maintain one API.",
+      "acceptance": "Given the sunset date has passed with no exception outstanding\nWhen v1 is removed\nThen the build passes, tests covering v1 are deleted and no dead code remains\n\nGiven an exception is still live\nWhen removal is attempted\nThen it is blocked until the exception expires",
+      "points": 3,
+      "sprint": 17,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-15",
+      "story": "As a late v1 caller, I want a clear gone response so that I know where to go.",
+      "acceptance": "Given a request to a removed v1 endpoint\nWhen it is served\nThen it returns 410 Gone with the v2 replacement URL and the guide link\n\nGiven the caller retries repeatedly\nWhen the pattern is detected\nThen their owner is contacted from the inventory",
+      "points": 2,
+      "sprint": 17,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-16",
+      "story": "As an engineering manager, I want the P1 SLA held through Q4 so that year-end pressure does not erode it.",
+      "acceptance": "Given P1 bugs raised in the quarter\nWhen it closes\nThen targets were met for the agreed percentage\n\nGiven a breach\nWhen reviewed\nThen the cause is recorded and an action raised",
+      "points": 3,
+      "sprint": 14,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-16",
+      "story": "As a security owner, I want the Q4 patch sweep done before the freeze so that we enter it clean.",
+      "acceptance": "Given the scanner report before the freeze date\nWhen the sweep completes\nThen no critical or high advisory beyond the agreed age remains open\n\nGiven a patch arrives during the freeze\nWhen it is critical\nThen the freeze exception process is followed and recorded",
+      "points": 3,
+      "sprint": 14,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-16",
+      "story": "As an engineering manager, I want the freeze-period rota agreed so that cover is certain over the holidays.",
+      "acceptance": "Given the freeze and holiday dates\nWhen the rota is published before the freeze begins\nThen every day has a named primary and secondary who have confirmed\n\nGiven someone cannot cover\nWhen they decline\nThen a replacement is named before the rota is final",
+      "points": 2,
+      "sprint": 15,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-16",
+      "story": "As a support engineer, I want the fourth request type automated so that the freeze needs less manual work.",
+      "acceptance": "Given the request log\nWhen the fourth most frequent manual request is automated\nThen it is self-service before the freeze starts\n\nGiven it fails during the freeze\nWhen it errors\nThen the manual path is documented in the freeze runbook",
+      "points": 3,
+      "sprint": 15,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-16",
+      "story": "As an on-call engineer, I want the quarter's alert noise reviewed so that holiday pages are real.",
+      "acceptance": "Given the quarter's alert history\nWhen the noisiest are reviewed\nThen each is made actionable, re-thresholded or deleted with a reason\n\nGiven a change is made before the freeze\nWhen the freeze period is counted\nThen out-of-hours pages are no higher than the previous quarter",
+      "points": 1,
+      "sprint": 15,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-16",
+      "story": "As a service owner, I want a pre-freeze readiness review so that we do not enter the freeze with known risk.",
+      "acceptance": "Given the freeze date\nWhen the review completes\nThen open P1s, failing alerts, expiring certificates and capacity headroom are all signed off or have owners\n\nGiven a blocker is found\nWhen it cannot be fixed before the freeze\nThen it is escalated with a mitigation",
+      "points": 3,
+      "sprint": 16,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-16",
+      "story": "As a compliance owner, I want the Q4 access review completed so that the year closes clean.",
+      "acceptance": "Given the access list\nWhen the review completes\nThen entitlements are confirmed or revoked with evidence retained for audit\n\nGiven contractors' access has expired\nWhen the review runs\nThen it is removed and recorded",
+      "points": 3,
+      "sprint": 16,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-16",
+      "story": "As a team, we want Q4 retro actions closed so that nothing is carried into the new year silently.",
+      "acceptance": "Given the quarter's retro actions\nWhen the year closes\nThen each is done, or explicitly carried with an owner and a date\n\nGiven an action is dropped\nWhen the review runs\nThen the reason is recorded rather than left blank",
+      "points": 3,
+      "sprint": 17,
+      "status": "Ready",
+      "notes": ""
+    },
+    {
+      "epic": "INI-16",
+      "story": "As an engineering manager, I want the FY2028 KTLO baseline written so that next year's plan is not a guess.",
+      "acceptance": "Given this year's KTLO actuals\nWhen the baseline is written\nThen support load, on-call hours and toil are quantified per quarter with next year's reserve recommendation\n\nGiven the recommendation differs from this year's 15%\nWhen it is presented\nThen the evidence for the change is stated",
+      "points": 3,
+      "sprint": 17,
+      "status": "Ready",
+      "notes": ""
     }
   ]
 }
